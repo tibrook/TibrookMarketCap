@@ -14,6 +14,8 @@ $black1: rgb(31, 31, 31);
 $black2: rgb(10, 10, 10);
 $shadow: 0 5px 15px rgba(0, 0, 0, 0.322);
 
+
+/* Permet d'exporter les couleurs sass et les utiliser en js  */
 :export {
   color1: $color1;
   green2: $green2;
