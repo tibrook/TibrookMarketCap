@@ -1,3 +1,5 @@
+## TP Formation React - Fromscratch
+
 # Crypto Watch Tower
 
 Market data : `https://api.coingecko.com/api/v3/global`
@@ -10,6 +12,6 @@ Coingecko : `https://www.coingecko.com/fr/pi%C3%A8ces/`
 
 ## Technos :
 
-# React 
-# Recharts 
-: permet de faire des graphiques à partir de données sur React
+- React 
+- Recharts : permet de faire des graphiques à partir de données sur React
+ 

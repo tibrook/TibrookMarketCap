@@ -55,7 +55,6 @@ const GlobalChart = ({ coinsData }) => {
       }
     }
     setDataArray(chartData);
-    console.log(chartData);
   }, [coinsData]);
 
   /* Retourne le nom de la crypto au survol de la boite */
