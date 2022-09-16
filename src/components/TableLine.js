@@ -6,17 +6,6 @@ import StarIcon from "./StarIcon";
 const TableLine = ({ coin, index }) => {
   const [showChart, setShowChart] = useState(false);
 
-  const mktCapFormater = (num) => {
-    let newNum = String(num).split("").slice(0, -6);
-
-    if (newNum.length > 3) {
-      newNum[newNum.length - 4] += " ";
-      return newNum.join("");
-    } else {
-      return "0," + newNum.join("");
-    }
-  };
-
   const priceFormater = (num) => {
     if (Math.round(num).toString().length < 4) {
       return new Intl.NumberFormat("us-US", {
@@ -26,6 +15,11 @@ const TableLine = ({ coin, index }) => {
     } else {
       return num;
     }
+  };
+
+  const mktCapFormater = (num) => {
+    let newNum = String(num).split("").slice(0, -6);
+    return Number(newNum.join(""));
   };
 
   return (
@@ -39,9 +33,7 @@ const TableLine = ({ coin, index }) => {
         <div className="infos">
           <div
             className="chart-img"
-            onMouseEnter={(e) => {
-              setShowChart(true);
-            }}
+            onMouseEnter={() => setShowChart(true)}
             onMouseLeave={() => setShowChart(false)}
           >
             <img src="./assets/chart-icon.svg" alt="chart-icon" />
@@ -55,7 +47,11 @@ const TableLine = ({ coin, index }) => {
             target="_blank"
             href={
               "https://www.coingecko.com/fr/pi%C3%A8ces/" +
-              coin.name.toLowerCase().replace(" ", "-").replace(" ", "-")
+              coin.name
+                .toLowerCase()
+                .replace(" ", "-")
+                .replace(" ", "-")
+                .replace(" ", "-")
             }
           >
             <img src="./assets/info-icon.svg" alt="info-icon" />
@@ -63,7 +59,9 @@ const TableLine = ({ coin, index }) => {
         </div>
       </div>
       <p>{priceFormater(coin.current_price).toLocaleString()} $</p>
-      <p className="mktcap">{mktCapFormater(coin.market_cap)} Md$</p>
+      <p className="mktcap">
+        {mktCapFormater(coin.market_cap).toLocaleString()} M$
+      </p>
       <p className="volume">{coin.total_volume.toLocaleString()} $</p>
       <PercentChange percent={coin.price_change_percentage_1h_in_currency} />
       <PercentChange percent={coin.market_cap_change_percentage_24h} />
@@ -72,7 +70,7 @@ const TableLine = ({ coin, index }) => {
       <PercentChange percent={coin.price_change_percentage_200d_in_currency} />
       <PercentChange percent={coin.price_change_percentage_1y_in_currency} />
       {coin.ath_change_percentage > -3 ? (
-        "ATH !"
+        <p>ATH !</p>
       ) : (
         <PercentChange percent={coin.ath_change_percentage} />
       )}

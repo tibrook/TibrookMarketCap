@@ -1,11 +1,10 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Tooltip, Treemap } from "recharts";
 import colors from "../styles/_settings.scss";
 
 const GlobalChart = ({ coinsData }) => {
   const [dataArray, setDataArray] = useState([]);
-  /* Retourne la couleur de la boite en fonction du % d'évolution 24h*/
+
   const colorPicker = (number) => {
     if (number >= 20) {
       return colors.color1;
@@ -21,7 +20,7 @@ const GlobalChart = ({ coinsData }) => {
       return colors.black2;
     }
   };
-  /* Permet d'exclure les stablecoins  de la watchlist*/
+
   const excludeCoin = (coin) => {
     if (
       coin === "usdt" ||
@@ -36,6 +35,7 @@ const GlobalChart = ({ coinsData }) => {
       return true;
     }
   };
+
   useEffect(() => {
     let chartData = [];
 
@@ -57,7 +57,6 @@ const GlobalChart = ({ coinsData }) => {
     setDataArray(chartData);
   }, [coinsData]);
 
-  /* Retourne le nom de la crypto au survol de la boite */
   const TreemapToolTip = ({ active, payload }) => {
     if (active && payload && payload.length) {
       return (
@@ -68,6 +67,7 @@ const GlobalChart = ({ coinsData }) => {
     }
     return null;
   };
+
   return (
     <div className="global-chart">
       <Treemap
@@ -75,9 +75,9 @@ const GlobalChart = ({ coinsData }) => {
         height={181}
         data={dataArray}
         dataKey="size"
-        stroke="rgb(51,51,51)" /* Bordures */
-        fill="black" /* Couleur Lettres */
-        aspectRatio="1" /* Forme des boites */
+        stroke="rgb(51,51,51)"
+        fill="black"
+        aspectRatio="1"
       >
         <Tooltip content={<TreemapToolTip />} />
       </Treemap>
